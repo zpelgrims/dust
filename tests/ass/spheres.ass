@@ -1,0 +1,39 @@
+options
+{
+	name options
+	camera "camera"
+	xres 500
+	yres 500
+	AA_samples 4
+}
+
+persp_camera
+{
+	name camera
+	matrix
+	 1 0 0 0
+	 0 1 0 0
+	 0 0 1 0
+	 0 3 20 1
+}
+
+sphere
+{
+	name pSphereShape2
+	center 0 0 0
+	radius 5
+	shader "dustShader"
+}
+
+sphere
+{
+	name pSphereShape3
+	center 0 8.5 0
+	radius 3.5
+	shader "dustShader"
+}
+
+dust
+{
+	name dustShader
+}
