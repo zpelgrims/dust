@@ -5,7 +5,7 @@
 
 // TODO
 // add max angle the dust is able to fall on
-//
+// take radius into account, if an object far away gets hit, it shouldn't have the same influence as nearby objects
 
 
 struct ShaderData
@@ -89,8 +89,8 @@ node_update
     ShaderData *data = (ShaderData*)AiNodeGetLocalData(node);
     AtNode *options = AiUniverseGetOptions();
     //data->sampleCount = AiNodeGetInt(options, "sampleCount");
-    data->sampleCount = 4;
-    data->sampler = AiSampler(data->sampleCount, 2);
+    data->sampleCount = 6;
+    data->sampler = AiSamplerSeeded(1, data->sampleCount, 2);
 }
 
 
@@ -125,8 +125,8 @@ shader_evaluate
 
     while (AiSamplerGetSample(sampit, samples)){
         concentricDiskSample(samples[0], samples[1], &unitDiskCoords);
-        randomConeVector.x = unitDiskCoords.x / 6.0;
-        randomConeVector.z = unitDiskCoords.y / 6.0;
+        randomConeVector.x = unitDiskCoords.x / 4.0;
+        randomConeVector.z = unitDiskCoords.y / 4.0;
 
         ray.dir = randomConeVector;
 
