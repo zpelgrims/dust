@@ -1,7 +1,11 @@
 /bin/*
+/tests/images/*
 *.dll
 *.dylib
 *.so
+*.exr
+*.png
+*.jpg
 
 .DS_Store
 .DS_Store?
