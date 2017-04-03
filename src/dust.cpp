@@ -3,6 +3,10 @@
 #include <cstring>
 #include <vector>
 
+// TODO
+// add max angle the dust is able to fall on
+//
+
 
 struct ShaderData
 {
@@ -57,15 +61,6 @@ inline void concentricDiskSample(float ox, float oy, AtPoint2 *lens) {
     }
 
     *lens = { r * fastCos(phi), r * fastSin(phi) };
-}
-
-
-// xorshift fast random number generator
-uint32_t xor128(void){
-    static uint32_t x = 123456789, y = 362436069, z = 521288629, w = 88675123;
-    uint32_t t = x ^ (x << 11);
-    x = y; y = z; z = w;
-    return w = (w ^ (w >> 19) ^ t ^ (t >> 8));
 }
 
 
@@ -129,7 +124,7 @@ shader_evaluate
 
 
     while (AiSamplerGetSample(sampit, samples)){
-        concentricDiskSample(xor128() / 4294967296.0f, xor128() / 4294967296.0f, &unitDiskCoords);
+        concentricDiskSample(samples[0], samples[1], &unitDiskCoords);
         randomConeVector.x = unitDiskCoords.x / 6.0;
         randomConeVector.z = unitDiskCoords.y / 6.0;
 
