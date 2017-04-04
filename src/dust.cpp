@@ -69,7 +69,7 @@ enum DustParams {
 node_parameters {
     AiParameterRGB("color", 1.0, 1.0, 1.0);
     AiParameterFLT("radius", 20.0);
-    AiParameterFLT("spread", 0.0);
+    AiParameterFLT("spread", 0.3);
     AiParameterSTR("traceSet", "");
     AiParameterINT("samples", 4);
 }
@@ -130,12 +130,14 @@ shader_evaluate {
 
         while (AiSamplerGetSample(sampit, samples)){
             concentricDiskSample(samples[0], samples[1], &unitDiskCoords);
-            randomConeVector.x = unitDiskCoords.x / spreadInv;
-            randomConeVector.z = unitDiskCoords.y / spreadInv;
+            randomConeVector.x = (unitDiskCoords.x * 10.0) / spreadInv;
+            randomConeVector.z = (unitDiskCoords.y * 10.0) / spreadInv;
 
             ray.dir = randomConeVector;
 
-            AiTraceProbe(&ray, NULL) ? result -= AI_RGB_BLACK : result += AI_RGB_WHITE;
+            if (!AiTraceProbe(&ray, NULL)){
+                result += AI_RGB_WHITE;
+            }
         }
 
         sg->out.RGB = (result * AiSamplerGetSampleInvCount(sampit)) * color;

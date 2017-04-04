@@ -1,0 +1,313 @@
+### exported: Thu Mar 09 11:22:51 2017
+### from:     Arnold 4.2.13.4 windows icc-14.0.2 oiio-1.5.22 rlm-12.0.2 2016/04/15 11:08:50
+### host app: MtoA 1.2.7.2.1  Maya 2015
+
+
+
+options
+{
+ AA_samples 6
+ outputs "RGBA RGBA defaultArnoldFilter@gaussian_filter defaultArnoldDriver@driver_exr.RGBA"
+ xres 1000
+ yres 575
+ aspect_ratio 1.00027597
+ bucket_size 32
+ enable_fast_opacity on
+ auto_transparency_depth 5
+ texture_max_memory_MB 1024
+ texture_per_file_stats on
+ texture_searchpath "C:/ilionData/Users/zeno.pelgrims/Documents/maya/projects/default/sourceimages"
+ texture_glossy_blur 0
+ camera "cameraShape1"
+ procedural_searchpath "C:/ilionData/Users/zeno.pelgrims/Documents/maya/projects/default/"
+ preserve_scene_data on
+ texture_gamma 1.95000005
+ GI_diffuse_depth 3
+ GI_glossy_depth 3
+ GI_reflection_depth 3
+ GI_refraction_depth 3
+ GI_volume_samples 0
+ declare frame constant FLOAT
+ frame 1
+ declare render_layer constant STRING
+ render_layer "defaultRenderLayer"
+ declare fps constant FLOAT
+ fps 24
+}
+
+persp_camera
+{
+ name cameraShape1
+ fov 25.3607674
+ focus_distance 1
+ aperture_size 0
+ aperture_blades 0
+ aperture_rotation 0
+ aperture_blade_curvature 0
+ aperture_aspect_ratio 1
+ uv_remap 0 0 0 0
+ matrix
+ 1 0 0 0
+ 0 1 0 0
+ 0 0 1 0
+ 338.412109 215.726059 2284.1167 1
+ near_clip 0.100000001
+ far_clip 10000
+ shutter_start 0
+ shutter_end 1
+ shutter_type "box"
+ rolling_shutter "off"
+ rolling_shutter_duration 0
+ screen_window_min -1 -1
+ screen_window_max 1 1
+ exposure 0
+}
+
+quad_light
+{
+ name aiAreaLightShape1
+ vertices 4 1 b85POINT
+yaRT=dzaRT=daRT=dzaRT=dyzyyz
+ decay_type "quadratic"
+ resolution 512
+ spread 1
+ matrix
+ 744.086243 0 0 0
+ 0 4.2742672 -744.073975 0
+ 0 744.073975 4.2742672 0
+ 219.40181 959.812561 -281.838837 1
+ color 1 1 1
+ intensity 1
+ exposure 22
+ cast_shadows on
+ cast_volumetric_shadows on
+ shadow_density 1
+ shadow_color 0 0 0
+ samples 2
+ normalize on
+ affect_diffuse on
+ affect_specular on
+ affect_volumetrics on
+ diffuse 1
+ specular 1
+ sss 1
+ indirect 1
+ max_bounces 999
+ volume_samples 2
+ volume 1
+ aov ""
+}
+
+polymesh
+{
+ name pPlaneShape1
+ nsides 100 1 b85UINT
+B!%<_l4$$$$=
+ vidxs 400 1 b85UINT
+B'Rg(<'n6:@(4ZLD(P)^H(kMpL)1r-P)MA?T)heQX*/4c\*JXu`+,LDh+GpVl+c?hp,)d%t,E37x,`WJ'-'&\+-BJn/-]o+3.$>=7.[1a?.vUsC/=%0G/XIBK/smTO0:<fS0U`xW0q05[17TG_1RxYc24l(k2P;:o2k_Ls32.^w3MRq&3hw.*4/F@.4JjR24f9d65,]v:5cQEB6)uWF6EDiJ6`i&N7'88R7B\JV7^+\Z8$On^8?t+b8[C=f9=6an9XZsr9t*0v::NC%:UrU):qAg-;7f$1;S565;nYH9<5(Z=<kq)E=2@;I=MdMM=i3_Q>/WqU>K'.Y>fK@]?,oRa?H>de?cbvi@EVEq@a%WuA'Ij$ABn'(A^=9,B$aK0B@0]4B[To8Bw$,<C=H>@Ct;bHD:_tLDV/1PDqSCTE7wUXESFg\Enk$`F5:6dFP^HhFl-ZlGMv)tGiE;xH/iN'HK8`+Hf\r/I-,/3IHPA7IctS;J*Ce?JEgwC
+ nidxs 400 1 b85UINT
+B$v2N*$[2`0%XA8:&:4\B&q(+J'RpOR(4csZ(kWBb)MJfj*/>5r+G^)V+,U5Y+c?Sa,)chg,E3(m,`W=s-'&S$-BJh*-]o(0.$>=6.vCa?.[:jA/=%0G/XIBK/smTO0:<fS0U`xW0q05[17TG_1RxYc2P)(k24u1m2k_Ls32.^w3MRq&3hw.*4/F@.4JjR24f9d65,]v:6)cEB5cZND6EDiJ6`i&N7'88R7B\JV7^+\Z8$On^8?t+b8[C=f9XHan9=?jp9t*0v::NC%:UrU):qAg-;7f$1;S565;nYH9<5(Z==2.)E<l%2G=MdMM=i3_Q>/WqU>K'.Y>fK@]?,oRa?H>de?cbvi@`hEq@E_NsA'Ij$ABn'(A^=9,B$aK0B@0]4B[To8Bw$,<C=H>@D:MbHCtDkJDV/1PDqSCTE7wUXESFg\Enk$`F5:6dFP^HhFl-ZlGi3)tGN*2vH/iN'HK8`+Hf\r/I-,/3IHPA7IctS;J*Ce?JEgwC
+ uvidxs 400 1 b85UINT
+B'Rg(<'n6:@(4ZLD(P)^H(kMpL)1r-P)MA?T)heQX*/4c\*JXu`+,LDh+GpVl+c?hp,)d%t,E37x,`WJ'-'&\+-BJn/-]o+3.$>=7.[1a?.vUsC/=%0G/XIBK/smTO0:<fS0U`xW0q05[17TG_1RxYc24l(k2P;:o2k_Ls32.^w3MRq&3hw.*4/F@.4JjR24f9d65,]v:5cQEB6)uWF6EDiJ6`i&N7'88R7B\JV7^+\Z8$On^8?t+b8[C=f9=6an9XZsr9t*0v::NC%:UrU):qAg-;7f$1;S565;nYH9<5(Z=<kq)E=2@;I=MdMM=i3_Q>/WqU>K'.Y>fK@]?,oRa?H>de?cbvi@EVEq@a%WuA'Ij$ABn'(A^=9,B$aK0B@0]4B[To8Bw$,<C=H>@Ct;bHD:_tLDV/1PDqSCTE7wUXESFg\Enk$`F5:6dFP^HhFl-ZlGMv)tGiE;xH/iN'HK8`+Hf\r/I-,/3IHPA7IctS;J*Ce?JEgwC
+ vlist 121 1 b85POINT
+aDq99Y&XMt89+]ca?IjJY&XMt89+]ca9wF[Y&XMt89+]ca1fesY&XMt89+]ca$.aHY&XMt89+]czY&XMt89+]c7m>0vY&XMt89+]c8%v5HY&XMt89+]c8.1k0Y&XMt89+]c83Y9uY&XMt89+]c89+]cY&XMt89+]caDq99Xv1*083Y9ta?IjJXv1*083Y9ta9wF[Xv1*083Y9ta1fesXv1*083Y9ta$.aHXv1*083Y9tzXv1*083Y9t7m>0vXv1*083Y9t8%v5HXv1*083Y9t8.1k0Xv1*083Y9t83Y9uXv1*083Y9t89+]cXv1*083Y9taDq99Xp^[A8.1k0a?IjJXp^[A8.1k0a9wF[Xp^[A8.1k0a1fesXp^[A8.1k0a$.aHXp^[A8.1k0zXp^[A8.1k07m>0vXp^[A8.1k08%v5HXp^[A8.1k08.1k0Xp^[A8.1k083Y9uXp^[A8.1k089+]cXp^[A8.1k0aDq99XhN%Y8%v5Ha?IjJXhN%Y8%v5Ha9wF[XhN%Y8%v5Ha1fesXhN%Y8%v5Ha$.aHXhN%Y8%v5HzXhN%Y8%v5H7m>0vXhN%Y8%v5H8%v5HXhN%Y8%v5H8.1k0XhN%Y8%v5H83Y9uXhN%Y8%v5H89+]cXhN%Y8%v5HaDq99XZjv.7m>0ra?IjJXZjv.7m>0ra9wF[XZjv.7m>0ra1fesXZjv.7m>0ra$.aHXZjv.7m>0rzXZjv.7m>0r7m>0vXZjv.7m>0r8%v5HXZjv.7m>0r8.1k0XZjv.7m>0r83Y9uXZjv.7m>0r89+]cXZjv.7m>0raDq997.b/0za?IjJ7.b/0za9wF[7.b/0za1fes7.b/0za$.aH7.b/0zz7.b/0z7m>0v7.b/0z8%v5H7.b/0z8.1k07.b/0z83Y9u7.b/0z89+]c7.b/0zaDq997N,n4`xX,Na?IjJ7N,n4`xX,Na9wF[7N,n4`xX,Na1fes7N,n4`xX,Na$.aH7N,n4`xX,Nz7N,n4`xX,N7m>0v7N,n4`xX,N8%v5H7N,n4`xX,N8.1k07N,n4`xX,N83Y9u7N,n4`xX,N89+]c7N,n4`xX,NaDq997`2$ra.jl-a?IjJ7`2$ra.jl-a9wF[7`2$ra.jl-a1fes7`2$ra.jl-a$.aH7`2$ra.jl-z7`2$ra.jl-7m>0v7`2$ra.jl-8%v5H7`2$ra.jl-8.1k07`2$ra.jl-83Y9u7`2$ra.jl-89+]c7`2$ra.jl-aDq997m?Vga4C:Ba?IjJ7m?Vga4C:Ba9wF[7m?Vga4C:Ba1fes7m?Vga4C:Ba$.aH7m?Vga4C:Bz7m?Vga4C:B7m>0v7m?Vga4C:B8%v5H7m?Vga4C:B8.1k07m?Vga4C:B83Y9u7m?Vga4C:B89+]c7m?Vga4C:BaDq997xlCLa7]n_a?IjJ7xlCLa7]n_a9wF[7xlCLa7]n_a1fes7xlCLa7]n_a$.aH7xlCLa7]n_z7xlCLa7]n_7m>0v7xlCLa7]n_8%v5H7xlCLa7]n_8.1k07xlCLa7]n_83Y9u7xlCLa7]n_89+]c7xlCLa7]n_aDq9980'jJa:P:;a?IjJ80'jJa:P:;a9wF[80'jJa:P:;a1fes80'jJa:P:;a$.aH80'jJa:P:;z80'jJa:P:;7m>0v80'jJa:P:;8%v5H80'jJa:P:;8.1k080'jJa:P:;83Y9u80'jJa:P:;89+]c80'jJa:P:;
+ nlist 121 1 b85VECTOR
+zy0(Jvtzy0(Jvrzy0(Jvtzy0(Jvuzy0(Jvqzy0(Jvqzy0(Jvszy0(Jvtzy0(Jvrzy0(Jvtzy0(Jvszy0(Jvszy0(Jvrzy0(Jvtzy0(Jvrzy0(Jvtzy0(Jvtzy0(Jvtzy0(Jvrzy0(Jvtzy0(Jvtzy0(Jvvzy0(Jvuzy0(Jvvzy0(Jvtzy0(Jvtzy0(Jvuzy0(Jvuzy0(Jvtzy0(Jvtzy0(Jvtzy0(Jvtzy0(Jvuzy0(Jvtzy0(Jvuzy0(Jvtzy0(Jvtzy0(Jvtzy0(Jvtzy0(Jvtzy0(Jvtzy0(Jvtzy0(Jvtzy0(Jvtz8Fc;47MP\Gz8Fc;47MP\Gz8Fc;27MP\Dz8Fc;47MP\Ez8Fc;47MP\Fz8Fc;47MP\Ez8Fc;47MP\Fz8Fc;47MP\Fz8Fc;27MP\Ez8Fc;47MP\Fz8Fc;47MP\Hz8FW;>7n)2wz8FW;>7n)2xz8FW;>7n)2vz8FW;>7n)2uz8FW;>7n)2uz8FW;>7n)2uz8FW;>7n)2uz8FW;>7n)2wz8FW;?7n)2xz8FW;>7n)2wz8FW;?7n)2vz8EfjP8,1/]z8EfjP8,1/^z8EfjP8,1/]z8EfjO8,1/\z8EfjP8,1/]z8EfjO8,1/\z8EfjP8,1/]z8EfjP8,1/]z8EfjP8,1/]z8EfjP8,1/]z8EfjO8,1/]z8BQ9G8:%.Fz8BQ9H8:%.Fz8BQ9G8:%.Gz8BQ9G8:%.Fz8BQ9H8:%.Fz8BQ9H8:%.Ez8BQ9H8:%.Fz8BQ9G8:%.Fz8BQ9G8:%.Fz8BQ9H8:%.Hz8BQ9H8:%.Hz8:G6M8B;>Mz8:G6P8B;>Mz8:G6M8B;>Mz8:G6M8B;>Mz8:G6N8B;>Mz8:G6N8B;>Mz8:G6N8B;>Mz8:G6N8B;>Mz8:G6N8B;>Nz8:G6O8B;>Mz8:G6P8B;>Mz80ZES8E)n5z80ZES8E)n5z80ZEQ8E)n3z80ZEQ8E)n3z80ZES8E)n5z80ZEQ8E)n3z80ZES8E)n5z80ZES8E)n5z80ZES8E)n5z80ZES8E)n4z80ZES8E)n5z8/:@C8E>Pfz8/:@B8E>Pfz8/:@E8E>Pgz8/:@C8E>Pgz8/:@C8E>Pfz8/:@C8E>Pgz8/:@B8E>Pfz8/:@B8E>Pfz8/:@D8E>Pfz8/:@B8E>Pfz8/:@@8E>Pf
+ uvlist 121 1 b85POINT2
+zz7m>0sz8%v5Iz8.1k0z83Y9tz89+]cz8;io[z8>S,Rz8A<>Jz8D%PBzyzz!7m>0s$$$$'8%v5I7m>0s8.1k07m>0s83Y9t7m>0s89+]c7m>0s8;io[7m>0s8>S,R7m>0s8A<>J7m>0s8D%PB7m>0sy7m>0sz8%v5I7m>0s!8%v5I$$$$'8.1k08%v5I83Y9t8%v5I89+]c8%v5I8;io[8%v5I8>S,R8%v5I8A<>J8%v5I8D%PB8%v5Iy8%v5Iz8.1k07m>0s8.1k08%v5I!8.1k0$$$$'83Y9t8.1k089+]c8.1k08;io[8.1k08>S,R8.1k08A<>J8.1k08D%PB8.1k0y8.1k0z83Y9t7m>0s83Y9t8%v5I83Y9t8.1k0!83Y9t$$$$'89+]c83Y9t8;io[83Y9t8>S,R83Y9t8A<>J83Y9t8D%PB83Y9ty83Y9tz89+]c7m>0s89+]c8%v5I89+]c8.1k089+]c83Y9t89+]c89+]c89+]c8;io[89+]c8>S,R89+]c8A<>J89+]c8D%PB89+]cy89+]cz8;io[7m>0s8;io[8%v5I8;io[8.1k08;io[83Y9t8;io[89+]c!8;io[$$$$'8>S,R8;io[8A<>J8;io[8D%PB8;io[y8;io[z8>S,R7m>0s8>S,R8%v5I8>S,R8.1k08>S,R83Y9t8>S,R89+]c8>S,R8;io[!8>S,R$$$$'8A<>J8>S,R8D%PB8>S,Ry8>S,Rz8A<>J7m>0s8A<>J8%v5I8A<>J8.1k08A<>J83Y9t8A<>J89+]c8A<>J8;io[8A<>J8>S,R!8A<>J$$$$'8D%PB8A<>Jy8A<>Jz8D%PB7m>0s8D%PB8%v5I8D%PB8.1k08D%PB83Y9t8D%PB89+]c8D%PB8;io[8D%PB8>S,R8D%PB8A<>J!8D%PB$$$$'y8D%PBzy7m>0sy8%v5Iy8.1k0y83Y9ty89+]cy8;io[y8>S,Ry8A<>Jy8D%PB!8Fcb9$$$$'
+ smoothing on
+ visibility 255
+ sidedness 255
+ receive_shadows on
+ self_shadows on
+ matrix
+ 2743.04468 0 0 0
+ 0 2743.04468 0 0
+ 0 0 2743.04468 0
+ 0 0 -778.959473 1
+ shader "initialShadingGroup"
+ opaque on
+ matte off
+ id 141609554
+ declare mtoa_shading_groups constant ARRAY NODE
+ mtoa_shading_groups "initialShadingGroup"
+}
+
+procedural
+{
+ name statue_02_02|statue_02_01Shape
+ dso "C:/ilionData/Users/zeno.pelgrims/Documents/arnoldShadersLearning/plastic/ass/statue_02.ass.gz"
+ min -137.809875 0 -96.2563171
+ max 120.925606 461.169128 115.343964
+ visibility 255
+ matrix
+ 0.965370119 0 0 0
+ 0 0.965370119 0 0
+ 0 0 0.965370119 0
+ 212.08075 0 -81.9670334 1
+ shader "dustShader"
+}
+
+ginstance
+{
+ name statue_02_03|statue_02_01Shape
+ node "statue_02_02|statue_02_01Shape"
+ inherit_xform off
+ visibility 255
+ matrix
+ 0.960250676 0 -0.0992880762 0
+ 0 0.965370119 0 0
+ 0.0992880762 0 0.960250676 0
+ 490.302887 0 -410.936737 1
+}
+
+ginstance
+{
+ name statue_02_04|statue_02_01Shape
+ node "statue_02_02|statue_02_01Shape"
+ inherit_xform off
+ visibility 255
+ matrix
+ 0.273934007 0 0.925688744 0
+ 0 0.965370119 0 0
+ -0.925688744 0 0.273934007 0
+ 690.209717 0 -23.0335522 1
+}
+
+ginstance
+{
+ name statue_02_05|statue_02_01Shape
+ node "statue_02_02|statue_02_01Shape"
+ inherit_xform off
+ visibility 255
+ matrix
+ -0.821342766 0 0.507282555 0
+ 0 0.965370119 0 0
+ -0.507282555 0 -0.821342766 0
+ -6.62785292 0 -796.099976 1
+}
+
+procedural
+{
+ name statue_01_02|statue_01_01Shape
+ dso "C:/ilionData/Users/zeno.pelgrims/Documents/arnoldShadersLearning/plastic/ass/statue_01.ass.gz"
+ min -123.012604 -26.0050049 -93.4528809
+ max 93.7494659 404.961853 92.3211517
+ visibility 255
+ matrix
+ 0.703617692 0 -0.71057874 0
+ 0 1 0 0
+ 0.71057874 0 0.703617692 0
+ 21.0307922 26.0674744 327.460632 1
+ shader "dustShader"
+}
+
+ginstance
+{
+ name statue_01_03|statue_01_01Shape
+ node "statue_01_02|statue_01_01Shape"
+ inherit_xform off
+ visibility 255
+ matrix
+ -0.614761949 0 -0.78871274 0
+ 0 1 0 0
+ 0.78871274 0 -0.614761949 0
+ 325.867432 26.0674744 -711.107422 1
+}
+
+ginstance
+{
+ name statue_01_04|statue_01_01Shape
+ node "statue_01_02|statue_01_01Shape"
+ inherit_xform off
+ visibility 255
+ matrix
+ 1 0 0 0
+ 0 1 0 0
+ 0 0 1 0
+ -198.881485 26.0674744 -300.549438 1
+}
+
+ginstance
+{
+ name statue_01_05|statue_01_01Shape
+ node "statue_01_02|statue_01_01Shape"
+ inherit_xform off
+ visibility 255
+ matrix
+ 0.920020223 0 0.391870946 0
+ 0 1 0 0
+ -0.391870946 0 0.920020223 0
+ 712.031555 26.0674744 506.354828 1
+}
+
+gaussian_filter
+{
+ name defaultArnoldFilter@gaussian_filter
+ width 2
+}
+
+driver_exr
+{
+ name defaultArnoldDriver@driver_exr.RGBA
+ filename "C:/ilionData/Users/zeno.pelgrims/Documents/maya/projects/default/images/depthTest.exr"
+ compression "zips"
+ half_precision on
+ tiled off
+ preserve_layer_name off
+ autocrop off
+ append off
+}
+
+MayaShadingEngine
+{
+ name initialShadingGroup
+ beauty lambert1
+}
+
+lambert
+{
+ name lambert1
+ Kd 0.800000012
+ Kd_color 0.5 0.5 0.5
+ opacity 1 1 1
+}
+
+
+
+
+dust
+{
+	name dustShader
+	color snow1
+	radius 20.0
+	spread 0.9
+	traceSet ""
+	samples 4
+}
+
+
+MayaSnow
+{
+ name snow1
+ snowColor 1 1 1
+ surfaceColor 0.0 0.0 0.0
+ threshold 0.5
+ depthDecay 5
+ thickness 1
+ wrap on
+ local off
+ placementMatrix 
+ 1 0 0 0
+ 0 1 0 0
+ 0 0 1 0
+ 0 0 0 1
+ defaultColor 0.5 0.5 0.5
+ colorGain 1 1 1
+ colorOffset 0 0 0
+ alphaGain 1
+ alphaOffset 0
+ alphaIsLuminance off
+ invert off
+ exposure 0
+}

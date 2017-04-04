@@ -25,7 +25,7 @@ sphere
 	center 0 12.5 0
 	radius 2.5
 	shader "dustShader"
-	trace_sets "xxx"
+	trace_sets ""
 }
 
 sphere
@@ -34,7 +34,7 @@ sphere
 	center 0 8.5 0
 	radius 3.5
 	shader "dustShader"
-	trace_sets "self"
+	trace_sets ""
 }
 
 sphere
@@ -43,7 +43,7 @@ sphere
 	center 0 0 0
 	radius 5
 	shader "dustShader"
-	trace_sets "xxx"
+	trace_sets ""
 }
 
 
@@ -60,7 +60,10 @@ dust
 {
 	name dustShader
 	color snow1
-	traceSet "xxx"
+	radius 20.0
+	spread 0.3
+	traceSet ""
+	samples 4
 }
 
 
@@ -70,7 +73,7 @@ MayaSnow
 {
  name snow1
  snowColor 1 1 1
- surfaceColor 1 0 0
+ surfaceColor 0.0 0.0 0.0
  threshold 0.5
  depthDecay 5
  thickness 1
