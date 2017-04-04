@@ -1,19 +1,13 @@
 #include <ai.h>
 #include <string>
 #include <cstring>
-#include <vector>
-
-// TODO
-// add max angle the dust is able to fall on
-
-struct ShaderData
-{
-    AtSampler* sampler;
-    int sampleCount;
-};
-
 
 AI_SHADER_NODE_EXPORT_METHODS(dustMethods);
+
+
+struct ShaderData {
+    AtSampler* sampler;
+};
 
 
 // sin approximation, not completely accurate but faster than std::sin
@@ -52,8 +46,7 @@ inline void concentricDiskSample(float ox, float oy, AtPoint2 *lens) {
     if ((a * a) > (b * b)){
         r = a;
         phi = (0.78539816339f) * (b / a);
-    }
-    else {
+    } else {
         r = b;
         phi = (AI_PIOVER2)-(0.78539816339f) * (a / b);
     }
@@ -62,43 +55,38 @@ inline void concentricDiskSample(float ox, float oy, AtPoint2 *lens) {
 }
 
 
-enum DustParams 
-{
+enum DustParams {
+    p_color,
     p_radius,
     p_spread,
     p_samples
 };
 
 
-node_parameters
-{
+node_parameters {
+    AiParameterRGB("color", 1.0, 1.0, 1.0);
     AiParameterFLT("radius", 20.0);
-    AiParameterFLT("spread", 0.9);
+    AiParameterFLT("spread", 0.85);
     AiParameterINT("samples", 4);
 }
 
 
-node_initialize
-{
+node_initialize {
     ShaderData* data = new ShaderData;
     AiNodeSetLocalData(node, data);
     data->sampler = NULL;
 }
 
 
-node_update
-{
+node_update {
     ShaderData *data = (ShaderData*)AiNodeGetLocalData(node);
     AtNode *options = AiUniverseGetOptions();
-    data->sampleCount = AiNodeGetInt(node, "samples");
-    data->sampler = AiSamplerSeeded(1, data->sampleCount, 2);
+    data->sampler = AiSamplerSeeded(1, AiNodeGetInt(node, "samples"), 2);
 }
 
 
-node_finish
-{
-    if (AiNodeGetLocalData(node))
-    {
+node_finish {
+    if (AiNodeGetLocalData(node)){
         ShaderData* data = (ShaderData*)AiNodeGetLocalData(node);
         AiSamplerDestroy(data->sampler);
         AiNodeSetLocalData(node, NULL);
@@ -107,19 +95,20 @@ node_finish
 }
 
 
-shader_evaluate
-{
+shader_evaluate {
     ShaderData* data = (ShaderData*)AiNodeGetLocalData(node);
 
+    AtRGB color = AiShaderEvalParamRGB(p_color);
     float radius = AiShaderEvalParamFlt(p_radius);
     float spreadInv = (1.0 - AiShaderEvalParamFlt(p_spread)) * 100.0;
 
     AtRGB result = AI_RGB_BLACK;
+
     AtPoint2 unitDiskCoords = {0.0, 0.0};
     AtRay ray;
     AtVector yUp = {0.0, 1.0, 0.0};
     AtVector randomConeVector = {0.0, 1.0, 0.0};
-
+    
     float samples[2];
     AtSamplerIterator* sampit = AiSamplerIterator(data->sampler, sg);
     AiMakeRay(&ray, AI_RAY_DIFFUSE, &sg->P, NULL, radius, sg);
@@ -131,16 +120,10 @@ shader_evaluate
 
         ray.dir = randomConeVector;
 
-        if (!AiTraceProbe(&ray, NULL)){
-            float nDotY = AiV3Dot(sg->N, yUp);
-            result += {nDotY, nDotY, nDotY};
-        } else {
-            result += AI_RGB_BLACK;
-        }
+        AiTraceProbe(&ray, NULL) ? result -= AI_RGB_BLACK : result += AI_RGB_WHITE;
     }
-    
-    sg->out.RGB = result * AiSamplerGetSampleInvCount(sampit);
 
+    sg->out.RGB = (result * AiSamplerGetSampleInvCount(sampit)) * color;
 }
 
 

@@ -36,4 +36,31 @@ sphere
 dust
 {
 	name dustShader
+	color snow1
+}
+
+
+MayaSnow
+{
+ name snow1
+ snowColor 1 1 1
+ surfaceColor 0.0 0 0
+ threshold 0.5
+ depthDecay 5
+ thickness 1
+ wrap on
+ local off
+ placementMatrix 
+ 1 0 0 0
+ 0 1 0 0
+ 0 0 1 0
+ 0 0 0 1
+ defaultColor 0.5 0.5 0.5
+ colorGain 1 1 1
+ colorOffset 0 0 0
+ alphaGain 1
+ alphaOffset 0
+ alphaIsLuminance off
+ invert off
+ exposure 0
 }
