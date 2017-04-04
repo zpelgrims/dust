@@ -7,6 +7,7 @@ AI_SHADER_NODE_EXPORT_METHODS(dustMethods);
 
 struct ShaderData {
     AtSampler* sampler;
+    std::string trace_set;
 };
 
 
@@ -59,6 +60,7 @@ enum DustParams {
     p_color,
     p_radius,
     p_spread,
+    p_traceSet,
     p_samples
 };
 
@@ -66,7 +68,8 @@ enum DustParams {
 node_parameters {
     AiParameterRGB("color", 1.0, 1.0, 1.0);
     AiParameterFLT("radius", 20.0);
-    AiParameterFLT("spread", 0.85);
+    AiParameterFLT("spread", 0.0);
+    AiParameterSTR("traceSet", "");
     AiParameterINT("samples", 4);
 }
 
@@ -81,7 +84,11 @@ node_initialize {
 node_update {
     ShaderData *data = (ShaderData*)AiNodeGetLocalData(node);
     AtNode *options = AiUniverseGetOptions();
+
     data->sampler = AiSamplerSeeded(1, AiNodeGetInt(node, "samples"), 2);
+
+    data->trace_set = std::string();
+    data->trace_set = params[p_traceSet].STR;
 }
 
 
@@ -108,11 +115,15 @@ shader_evaluate {
     AtRay ray;
     AtVector yUp = {0.0, 1.0, 0.0};
     AtVector randomConeVector = {0.0, 1.0, 0.0};
+
+    if (data->trace_set.length()){
+        AiShaderGlobalsSetTraceSet(sg, data->trace_set.c_str(), true);
+    }
     
     float samples[2];
     AtSamplerIterator* sampit = AiSamplerIterator(data->sampler, sg);
     AiMakeRay(&ray, AI_RAY_DIFFUSE, &sg->P, NULL, radius, sg);
-
+    
     while (AiSamplerGetSample(sampit, samples)){
         concentricDiskSample(samples[0], samples[1], &unitDiskCoords);
         randomConeVector.x = unitDiskCoords.x / spreadInv;
@@ -122,6 +133,8 @@ shader_evaluate {
 
         AiTraceProbe(&ray, NULL) ? result -= AI_RGB_BLACK : result += AI_RGB_WHITE;
     }
+
+    AiShaderGlobalsUnsetTraceSet(sg);
 
     sg->out.RGB = (result * AiSamplerGetSampleInvCount(sampit)) * color;
 }

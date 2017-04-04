@@ -14,15 +14,18 @@ persp_camera
 	 1 0 0 0
 	 0 1 0 0
 	 0 0 1 0
-	 0 3 20 1
+	 0 8 20 1
 }
+
+
 
 sphere
 {
-	name pSphereShape2
-	center 0 0 0
-	radius 5
+	name pSphereShape5
+	center 0 12.5 0
+	radius 2.5
 	shader "dustShader"
+	trace_sets "xxx"
 }
 
 sphere
@@ -31,20 +34,43 @@ sphere
 	center 0 8.5 0
 	radius 3.5
 	shader "dustShader"
+	trace_sets "self"
+}
+
+sphere
+{
+	name pSphereShape2
+	center 0 0 0
+	radius 5
+	shader "dustShader"
+	trace_sets "xxx"
+}
+
+
+
+
+dust
+{
+	name dustShader2
+	color snow1
+	traceSet ""
 }
 
 dust
 {
 	name dustShader
 	color snow1
+	traceSet "xxx"
 }
+
+
 
 
 MayaSnow
 {
  name snow1
  snowColor 1 1 1
- surfaceColor 0.0 0 0
+ surfaceColor 1 0 0
  threshold 0.5
  depthDecay 5
  thickness 1
