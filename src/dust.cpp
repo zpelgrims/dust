@@ -5,8 +5,6 @@
 
 // TODO
 // add max angle the dust is able to fall on
-// take radius into account, if an object far away gets hit, it shouldn't have the same influence as nearby objects
-
 
 struct ShaderData
 {
@@ -66,13 +64,17 @@ inline void concentricDiskSample(float ox, float oy, AtPoint2 *lens) {
 
 enum DustParams 
 {
-
+    p_radius,
+    p_spread,
+    p_samples
 };
 
 
 node_parameters
 {
-
+    AiParameterFLT("radius", 20.0);
+    AiParameterFLT("spread", 0.9);
+    AiParameterINT("samples", 4);
 }
 
 
@@ -88,8 +90,7 @@ node_update
 {
     ShaderData *data = (ShaderData*)AiNodeGetLocalData(node);
     AtNode *options = AiUniverseGetOptions();
-    //data->sampleCount = AiNodeGetInt(options, "sampleCount");
-    data->sampleCount = 6;
+    data->sampleCount = AiNodeGetInt(node, "samples");
     data->sampler = AiSamplerSeeded(1, data->sampleCount, 2);
 }
 
@@ -110,23 +111,23 @@ shader_evaluate
 {
     ShaderData* data = (ShaderData*)AiNodeGetLocalData(node);
 
+    float radius = AiShaderEvalParamFlt(p_radius);
+    float spreadInv = (1.0 - AiShaderEvalParamFlt(p_spread)) * 100.0;
 
     AtRGB result = AI_RGB_BLACK;
     AtPoint2 unitDiskCoords = {0.0, 0.0};
-    float samples[2];
     AtRay ray;
     AtVector yUp = {0.0, 1.0, 0.0};
     AtVector randomConeVector = {0.0, 1.0, 0.0};
 
-
+    float samples[2];
     AtSamplerIterator* sampit = AiSamplerIterator(data->sampler, sg);
-    AiMakeRay(&ray, AI_RAY_DIFFUSE, &sg->P, NULL, AI_BIG, sg);
-
+    AiMakeRay(&ray, AI_RAY_DIFFUSE, &sg->P, NULL, radius, sg);
 
     while (AiSamplerGetSample(sampit, samples)){
         concentricDiskSample(samples[0], samples[1], &unitDiskCoords);
-        randomConeVector.x = unitDiskCoords.x / 4.0;
-        randomConeVector.z = unitDiskCoords.y / 4.0;
+        randomConeVector.x = unitDiskCoords.x / spreadInv;
+        randomConeVector.z = unitDiskCoords.y / spreadInv;
 
         ray.dir = randomConeVector;
 
@@ -137,10 +138,8 @@ shader_evaluate
             result += AI_RGB_BLACK;
         }
     }
-
-    result *= AiSamplerGetSampleInvCount(sampit);
     
-    sg->out.RGB = result;
+    sg->out.RGB = result * AiSamplerGetSampleInvCount(sampit);
 
 }
 
