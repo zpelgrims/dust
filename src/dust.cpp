@@ -44,6 +44,7 @@ inline void concentricDiskSample(float ox, float oy, AtPoint2 *lens) {
     float a = 2.0 * ox - 1.0;
     float b = 2.0 * oy - 1.0;
 
+    // magic
     if ((a * a) > (b * b)){
         r = a;
         phi = (0.78539816339f) * (b / a);
@@ -83,7 +84,6 @@ node_initialize {
 
 node_update {
     ShaderData *data = (ShaderData*)AiNodeGetLocalData(node);
-    AtNode *options = AiUniverseGetOptions();
 
     data->sampler = AiSamplerSeeded(1, AiNodeGetInt(node, "samples"), 2);
 
@@ -107,7 +107,8 @@ shader_evaluate {
 
     AtRGB color = AiShaderEvalParamRGB(p_color);
     float radius = AiShaderEvalParamFlt(p_radius);
-    float spreadInv = (1.0 - AiShaderEvalParamFlt(p_spread)) * 100.0;
+    float spread = AiShaderEvalParamFlt(p_spread);
+    float spreadInv = (1.0 - spread) * 100.0;
 
     AtRGB result = AI_RGB_BLACK;
 
@@ -119,24 +120,32 @@ shader_evaluate {
     if (data->trace_set.length()){
         AiShaderGlobalsSetTraceSet(sg, data->trace_set.c_str(), true);
     }
-    
-    float samples[2];
-    AtSamplerIterator* sampit = AiSamplerIterator(data->sampler, sg);
-    AiMakeRay(&ray, AI_RAY_DIFFUSE, &sg->P, NULL, radius, sg);
-    
-    while (AiSamplerGetSample(sampit, samples)){
-        concentricDiskSample(samples[0], samples[1], &unitDiskCoords);
-        randomConeVector.x = unitDiskCoords.x / spreadInv;
-        randomConeVector.z = unitDiskCoords.y / spreadInv;
 
-        ray.dir = randomConeVector;
+    AiMakeRay(&ray, AI_RAY_SHADOW, &sg->P, NULL, radius, sg);
 
-        AiTraceProbe(&ray, NULL) ? result -= AI_RGB_BLACK : result += AI_RGB_WHITE;
+    if (spread > 0.0){
+        float samples[2];
+        AtSamplerIterator* sampit = AiSamplerIterator(data->sampler, sg);
+        
+
+        while (AiSamplerGetSample(sampit, samples)){
+            concentricDiskSample(samples[0], samples[1], &unitDiskCoords);
+            randomConeVector.x = unitDiskCoords.x / spreadInv;
+            randomConeVector.z = unitDiskCoords.y / spreadInv;
+
+            ray.dir = randomConeVector;
+
+            AiTraceProbe(&ray, NULL) ? result -= AI_RGB_BLACK : result += AI_RGB_WHITE;
+        }
+
+        sg->out.RGB = (result * AiSamplerGetSampleInvCount(sampit)) * color;
+
+    } else {
+        ray.dir = yUp;
+        AiTraceProbe(&ray, NULL) ? sg->out.RGB = AI_RGB_BLACK : sg->out.RGB = color;
     }
 
     AiShaderGlobalsUnsetTraceSet(sg);
-
-    sg->out.RGB = (result * AiSamplerGetSampleInvCount(sampit)) * color;
 }
 
 
