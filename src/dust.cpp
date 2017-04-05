@@ -15,7 +15,6 @@ enum DustParams {
     p_color,
     p_radius,
     p_spread,
-    p_falloff,
     p_traceSet,
     p_samples
 };
@@ -25,7 +24,6 @@ node_parameters {
     AiParameterRGB("color", 1.0, 1.0, 1.0);
     AiParameterFLT("radius", 20.0);
     AiParameterFLT("spread", 1.0);
-    AiParameterFLT("falloff", 0.0);
     AiParameterSTR("traceSet", "");
     AiParameterINT("samples", 4);
 }
@@ -64,11 +62,10 @@ shader_evaluate {
     const AtRGB color = AiShaderEvalParamRGB(p_color);
     const float radius = AiShaderEvalParamFlt(p_radius);
     const float spread = AiShaderEvalParamFlt(p_spread);
-    const float falloff = AiShaderEvalParamFlt(p_falloff);
     const AtVector y = {0.0, 1.0, 0.0};
     AtRGB result = AI_RGB_BLACK;
 
-    sg->out.RGB = (AI_RGB_WHITE - AiOcclusion(&y, &y, sg, 0.0, radius, spread, falloff, data->sampler, NULL)) * color;
+    sg->out.RGB = (AI_RGB_WHITE - AiOcclusion(&y, &y, sg, 0.0, radius, spread, 0.0, data->sampler, NULL)) * color;
 
     AiShaderGlobalsUnsetTraceSet(sg);
 }
