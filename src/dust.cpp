@@ -2,7 +2,7 @@
 #include <string>
 #include <cstring>
 
-AI_SHADER_NODE_EXPORT_METHODS(dustMethods);
+AI_SHADER_NODE_EXPORT_METHODS(dustyMethods);
 
 
 struct ShaderData {
@@ -74,9 +74,9 @@ shader_evaluate {
 
 node_loader {
     if (i > 0){return false;}
-    node->methods     = dustMethods;
+    node->methods     = dustyMethods;
     node->output_type = AI_TYPE_RGB;
-    node->name        = "dust";
+    node->name        = "dusty";
     node->node_type   = AI_NODE_SHADER;
     strcpy(node->version, AI_VERSION);
     return true;

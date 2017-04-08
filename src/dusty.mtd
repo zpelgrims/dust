@@ -1,0 +1,32 @@
+[node dusty]
+    maya.name               STRING  "dusty"
+    maya.id                 INT      0x00071210
+    maya.classification     STRING  "shader/surface"
+    maya.output_name        STRING  "outColor"
+    maya.output_shortname   STRING  "out"
+ 
+    [attr color]
+        maya.name           STRING  "color"
+
+    [attr radius]
+    	maya.name           STRING  "radius"
+    	min                 FLOAT   0.001
+        max                 FLOAT   10000.0
+        default             FLOAT   20.0
+        linkable            BOOL    TRUE
+
+	[attr spread]
+		maya.name           STRING  "spread"
+    	min                 FLOAT   0.0
+        max                 FLOAT   1.0
+        default             FLOAT   1.0
+        linkable            BOOL    TRUE
+
+	[attr traceSet]
+		maya.name           STRING  "traceSet"
+
+	[attr samples]
+		maya.name           STRING  "samples"
+    	min                 INT   1
+        max                 INT   50
+        linkable            BOOL    FALSE
