@@ -1,7 +1,7 @@
 [node dusty]
     maya.name               STRING  "dusty"
     maya.id                 INT      0x00071210
-    maya.classification     STRING  "shader/surface"
+    maya.classification     STRING  "utility/color"
     maya.output_name        STRING  "outColor"
     maya.output_shortname   STRING  "out"
  
@@ -12,6 +12,7 @@
     	maya.name           STRING  "radius"
     	min                 FLOAT   0.001
         max                 FLOAT   10000.0
+        softmax             FLOAT   200.0
         default             FLOAT   20.0
         linkable            BOOL    TRUE
 

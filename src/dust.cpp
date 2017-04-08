@@ -65,6 +65,11 @@ shader_evaluate {
     const AtVector y = {0.0, 1.0, 0.0};
     AtRGB result = AI_RGB_BLACK;
 
+    if (data->trace_set.length())
+    {
+        AiShaderGlobalsSetTraceSet(sg, data->trace_set.c_str(), true);
+    }
+
     sg->out.RGB = (AI_RGB_WHITE - AiOcclusion(&y, &y, sg, 0.0, radius, spread, 0.0, data->sampler, NULL)) * color;
 
     AiShaderGlobalsUnsetTraceSet(sg);
