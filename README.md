@@ -1,3 +1,5 @@
+![Comparison with 0.0 spread radius](http://zenopelgrims.com/wp-content/uploads/2017/04/zeno_pelgrims_dusty_spread_comparison.gif "Comparison with 0.0 spread radius")
+
 # dust
 Dust node for the Arnold Renderer
 
