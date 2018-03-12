@@ -17,3 +17,8 @@ dust: Makefile src/dust.cpp ${HEADERS}
 
 clean:
 	rm -f dusty
+
+
+
+# compile on windows using vs17 x64 developer cmd prompt
+# cl /LD /I C:\Users\Zeno\Arnold-5.0.2.0-windows\include /EHsc /O2 dust.cpp /link /LIBPATH:C:\Users\Zeno\Arnold-5.0.2.0-windows\lib ai.lib
