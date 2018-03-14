@@ -10,10 +10,10 @@ HEADERS=\
 
 .PHONY=all clean
 
-all: dust
+all: dusty
 
-dust: Makefile src/dust.cpp ${HEADERS}
-	${CXX} ${CXXFLAGS} src/dust.cpp -o bin/dusty.dylib ${LDFLAGS}
+dusty: Makefile src/dusty.cpp ${HEADERS}
+	${CXX} ${CXXFLAGS} src/dusty.cpp -o bin/dusty.dylib ${LDFLAGS}
 
 clean:
 	rm -f dusty
